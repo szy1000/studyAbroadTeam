@@ -6,15 +6,16 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import type {Node} from 'react';
 import {StyleSheet, useColorScheme, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Header, SearchBar} from 'react-native-elements';
+import {Header, Text, Icon, SearchBar, Badge} from 'react-native-elements';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const App: () => Node = () => {
+  const [value, setValue] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -25,29 +26,51 @@ const App: () => Node = () => {
     <SafeAreaProvider style={backgroundStyle}>
       <Header
         placement="left"
-        leftComponent={{icon: 'menu', color: '#fff'}}
-        centerComponent={
+        // backgroundColor="transparent"
+        leftComponent={
           <View
-            style={{width: '100%', height: 50, backgroundColor: 'blue'}}
-            // onChangeText={this.updateSearch}
-            value="sss">
-            <SearchBar
-              style={{
-                backgroundColor: 'transparent',
+            style={{flexDirection: 'row', alignItems: 'center', height: 30}}>
+            <Icon name="location" type="evilicon" color="#fff" />
+            <Text style={{color: '#fff'}}>南京</Text>
+          </View>
+        }
+        centerComponent={
+          <SearchBar
+            lightTheme
+            round
+            placeholder="请输入"
+            containerStyle={{
+              padding: 0,
+              width: '100%',
+              borderTopWidth: 0,
+              borderBottomWidth: 0,
+              backgroundColor: 'transparent',
+            }}
+            inputContainerStyle={{
+              backgroundColor: '#fff',
+              height: 30,
+            }}
+            onChangeText={e => setValue(e)}
+            value={value}
+          />
+        }
+        rightComponent={
+          <View>
+            <Icon name="message1" type="antdesign" color="#fff" />
+            <Badge
+              status="error"
+              value={value >= 99 ? '99+' : value}
+              containerStyle={{
+                position: 'absolute',
+                right: -4,
+                top: -4,
               }}
-              placeholder="Type Here..."
-              // onChangeText={this.updateSearch}
-              value=""
             />
           </View>
         }
-        rightComponent={{icon: 'home', color: '#fff'}}
       />
 
-      <SearchBar
-        placeholder="Type Here..."
-        onChangeText={this.updateSearch}
-      />
+
     </SafeAreaProvider>
   );
 };

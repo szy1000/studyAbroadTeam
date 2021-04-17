@@ -8,30 +8,42 @@
 
 import React, {useState} from 'react';
 import type {Node} from 'react';
-import {StyleSheet, useColorScheme, View} from 'react-native';
+import {StyleSheet, useColorScheme, Image, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Header, Text, Icon, SearchBar, Badge} from 'react-native-elements';
+import {DeckSwiper, Card, CardItem} from 'native-base';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const App: () => Node = () => {
   const [value, setValue] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
-
+  const cards = [
+    {
+      text: 'Card One',
+      name: 'One',
+      image: require('./src/assets/images/banner1.png'),
+    },
+    {
+      text: 'Card One2',
+      name: 'One2',
+      image: require('./src/assets/images/banner2.png'),
+    },
+  ];
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: 'red'
   };
 
   return (
     <SafeAreaProvider style={backgroundStyle}>
       <Header
         placement="left"
-        // backgroundColor="transparent"
+        backgroundColor="#e6fffe"
         leftComponent={
           <View
             style={{flexDirection: 'row', alignItems: 'center', height: 30}}>
-            <Icon name="location" type="evilicon" color="#fff" />
-            <Text style={{color: '#fff'}}>南京</Text>
+            <Icon name="location" type="evilicon" color="#000" />
+            <Text style={{color: '#000'}}>南京</Text>
           </View>
         }
         centerComponent={
@@ -56,7 +68,7 @@ const App: () => Node = () => {
         }
         rightComponent={
           <View>
-            <Icon name="message1" type="antdesign" color="#fff" />
+            <Icon name="message1" type="antdesign" color="#000" />
             <Badge
               status="error"
               value={value >= 99 ? '99+' : value}
@@ -69,8 +81,15 @@ const App: () => Node = () => {
           </View>
         }
       />
-
-
+      <DeckSwiper
+        style={{marginTop: -10, padding: 0}}
+        dataSource={cards}
+        renderItem={item => (
+          <Card style={{elevation: 3}}>
+            <Image style={{height: 200, width: '100%'}} source={item.image} />
+          </Card>
+        )}
+      />
     </SafeAreaProvider>
   );
 };

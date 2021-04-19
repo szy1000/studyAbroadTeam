@@ -83,17 +83,39 @@ const App: () => Node = () => {
           </View>
         }
       />
-      <Swiper style={styles.wrapper} showsButtons={true}>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-        <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-        </View>
-      </Swiper>
+      <View style={{height: 195}}>
+        <Swiper
+          dotStyle={{backgroundColor: 'transparent'}}
+          activeDotColor="transparent"
+          // dot={
+          //   <View
+          //     style={{
+          //       display: 'none',
+          //       backgroundColor: 'rgba(0,0,0,.2)',
+          //       width: 5,
+          //       height: 5,
+          //       borderRadius: 4,
+          //       marginLeft: 3,
+          //       marginRight: 3,
+          //       marginTop: 3,
+          //       marginBottom: 3,
+          //     }}
+          //   />
+          // }
+          height={195}
+          style={styles.wrapper}>
+          <Image
+            style={styles.item}
+            source={require('./src/assets/images/banner1.png')}
+          />
+          <Image
+            style={styles.item}
+            source={require('./src/assets/images/banner2.png')}
+          />
+        </Swiper>
+      </View>
+
+      <Text>s</Text>
       <Text>s</Text>
       {/*<Link />*/}
     </SafeAreaProvider>
@@ -102,49 +124,12 @@ const App: () => Node = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    // height: 200,
   },
-  slide1: {
+  item: {
+    width: '100%',
+    resizeMode: 'contain',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB',
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
   },
 });
 

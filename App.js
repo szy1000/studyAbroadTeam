@@ -11,7 +11,8 @@ import type {Node} from 'react';
 import {StyleSheet, useColorScheme, Image, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Header, Text, Icon, SearchBar, Badge} from 'react-native-elements';
-import {DeckSwiper, Card, CardItem} from 'native-base';
+import Swiper from 'react-native-swiper';
+import Link from './src/components/Link/link';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -31,14 +32,15 @@ const App: () => Node = () => {
     },
   ];
   const backgroundStyle = {
-    backgroundColor: 'red'
+    // backgroundColor: 'red',
   };
 
   return (
     <SafeAreaProvider style={backgroundStyle}>
       <Header
         placement="left"
-        backgroundColor="#e6fffe"
+        // backgroundColor="#e6fffe"
+        backgroundColor="transparent"
         leftComponent={
           <View
             style={{flexDirection: 'row', alignItems: 'center', height: 30}}>
@@ -81,20 +83,53 @@ const App: () => Node = () => {
           </View>
         }
       />
-      <DeckSwiper
-        style={{marginTop: -10, padding: 0}}
-        dataSource={cards}
-        renderItem={item => (
-          <Card style={{elevation: 3}}>
-            <Image style={{height: 200, width: '100%'}} source={item.image} />
-          </Card>
-        )}
-      />
+      <Swiper style={styles.wrapper} showsButtons={true}>
+        <View style={styles.slide1}>
+          <Text style={styles.text}>Hello Swiper</Text>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text}>Beautiful</Text>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text}>And simple</Text>
+        </View>
+      </Swiper>
+      <Text>s</Text>
+      {/*<Link />*/}
     </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
